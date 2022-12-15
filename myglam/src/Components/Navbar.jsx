@@ -1,24 +1,61 @@
-import React from 'react';
-import { Box, Button, ButtonGroup, Flex, Heading, Spacer } from '@chakra-ui/react';
+import React from 'react'
+import { 
+Spacer,
+Flex,
+Box } from '@chakra-ui/react'
+import { Logo } from './Logo'
+import { MenuBar } from './MenuBar'
+import { SearchBar } from './SearchBar'
 
-const Navbar=()=>{
-    return(
-        <>
+import { FaShoppingBag } from "react-icons/fa";
+import { OfferBar } from './OfferBar' ;
 
-<Flex p="15px" minWidth='max-content' alignItems='center' gap='2'>
-  <Box p='2'>
-    <Heading size='md'>My-Glamm</Heading>
+import '../App.css';
+
+
+
+import SignupChakra from '../signup/SignupChakra'
+import { useDispatch, useSelector } from 'react-redux/es/exports'
+import Profile from '../signup/Profile'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { datafrombag } from '../reducer/AppReducer/action'
+
+const Navbar = () => {
+  let bag=useSelector((state)=>state.app.bag)
+  const dispatch=useDispatch();
+  const navigate=useNavigate()
+const {isAuth}=useSelector((state)=>state.auth);
+useEffect(()=>{
+  dispatch(datafrombag())
+},[dispatch])
+
+
+  return   (
+    <Box className='navbar-sticky'   width='100%' >
+    <OfferBar/>
+    <Flex width='70%' direction='row' height='60px' margin='auto' pt='12px' >
+      <Box> <Logo/> </Box>
+      <Box className='searchbar' > <SearchBar/> </Box>
+      <Spacer/>
+      <Flex justifyContent={"space-between"} width="100px" >
+
+      {/* <Box  cursor={"pointer"} > <FaShoppingBag style={{color: 'black', border:'1px', fontSize: '25px'}}/> </Box>
+      <Box cursor={"pointer"} > <AiOutlineUser style={{color: 'black', fontSize: '25px'}}/> </Box> */}
+
+      <Box onClick={()=>navigate("/mybag")}cursor={"pointer"} display="flex" > <FaShoppingBag style={{color: 'black', border:'1px', fontSize: '25px'}}/><span style={{"position":"relative","right":"10px","backgroundColor":"#fee8e8","border-radius":"50%","height":"20px","width":"20px","textAlign":"center"}}  >{bag.length}</span> </Box>
+      <Box cursor={"pointer"} > {isAuth ? <Profile/>:<SignupChakra/>} </Box>
+
+      </Flex>
+    </Flex>
+    <MenuBar/>
+    
   </Box>
-  <Spacer />
-  <ButtonGroup gap='2'>
-    <Button colorScheme='teal'>Sign Up</Button>
-    <Button colorScheme='teal'>Log in</Button>
-  </ButtonGroup>
-</Flex>
-<hr />
-        
-        </>
-    )
-}
+   )
 
-export default Navbar;
+}
+ 
+
+
+
+export default Navbar
