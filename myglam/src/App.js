@@ -1,12 +1,14 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Navbar from './Componets/Navbar';
+
+import AllRoutes from './pages/AllRoutes';
+import Payment from './pages/Payment';
 
 function App() {
   return (
-   <>
-   <Navbar/>
-   </>
+    <div className="App">
+      <AllRoutes/>
+    </div>
   );
 }
 
