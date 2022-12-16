@@ -2,12 +2,14 @@ import {
     Box,
     Center,
     useColorModeValue,
+
     Heading,
     Text,
     Stack,
     Image,
   } from '@chakra-ui/react';
   
+
   const IMAGE =
     'https://files.myglamm.com/site-images/400x400/Game-over-Germs_2.jpg';
   
