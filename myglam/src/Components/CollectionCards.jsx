@@ -22,7 +22,7 @@ import {
           maxW={'220px'}
           w={'full'}
           bg={useColorModeValue('white', 'gray.800')}
-        //   boxShadow={'2xl'}
+       
         border='1px'
         borderColor= 'gray.400'
           rounded={'lg'}
@@ -56,6 +56,7 @@ import {
               src={image}
               pt='30px'
             />
+            
           </Box>
           <Stack pt={10} align={'center'}>
             <Heading fontSize={'sm'} fontFamily={'body'} fontWeight={500}>
